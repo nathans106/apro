@@ -111,6 +111,8 @@ void TIM1_UP_IRQHandler(void) {
 
 }
 
+
+
 int16_t output_buffer[kBlockSize];
 
 void Process(IOBuffer::Block* block, size_t size) {
@@ -148,11 +150,17 @@ void Init() {
   sys.StartTimers();
 }
 
+namespace peaks {
+int main() {
+    Init();
+
+    while (1) {
+        ui.DoEvents();
+        io_buffer.Process(&Process);
+    }
+}
+}
+
 int main(void) {
-  Init();
-  
-  while (1) {
-    ui.DoEvents();
-    io_buffer.Process(&Process);
-  }
+    return peaks::main();
 }
