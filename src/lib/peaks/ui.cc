@@ -28,11 +28,13 @@
 
 #include "ui.h"
 
-#include "stmlib/system/storage.h"
+#include "util/storage/csv.h"
 
 #include <algorithm>
 
 #include "calibration_data.h"
+
+#include <cassert>
 
 namespace peaks {
 
@@ -56,7 +58,58 @@ const ProcessorFunction Ui::function_table_[FUNCTION_LAST][2] = {
   { PROCESSOR_FUNCTION_FM_DRUM, PROCESSOR_FUNCTION_FM_DRUM },
 };
 
-Storage<0x8020000, 16> storage;
+Csv storage;
+
+Settings loadSettings() {
+    assert(storage.exists());
+    Settings settings;
+    const auto data = storage.load();
+    settings.edit_mode = std::stoi(data[0][0]);
+
+    std::transform(
+        data[1].begin(),
+        data[1].end(),
+        settings.function.begin(),
+        [](const std::string& str) {
+            return std::stoi(str);
+        });
+
+    std::transform(
+        data[2].begin(),
+        data[2].end(),
+        settings.pot_value.begin(),
+        [](const std::string& str) {
+            return std::stoi(str);
+        });
+
+    settings.snap_mode = std::stoi(data[3][0]);
+
+    return settings;
+}
+
+void saveSettings(const Settings& settings) {
+    Csv::Data data(4);
+    data[0].push_back(std::to_string(settings.edit_mode));
+
+    std::transform(
+        settings.function.begin(),
+        settings.function.end(),
+        data[1].begin(),
+        [](const auto num) {
+            return std::to_string(num);
+        });
+
+    std::transform(
+        settings.pot_value.begin(),
+        settings.pot_value.end(),
+        data[2].begin(),
+        [](const auto num) {
+            return std::to_string(num);
+        });
+
+    data[3][0] = std::to_string(settings.snap_mode);
+    storage.save(data);
+}
 
 void Ui::Init(CalibrationData* calibration_data) {
   calibration_data_ = calibration_data;
@@ -74,12 +127,8 @@ void Ui::Init(CalibrationData* calibration_data) {
   
   calibrating_ = switches_.pressed_immediate(1);
   
-  if (!storage.ParsimoniousLoad(&settings_, &version_token_)) {
-    edit_mode_ = EDIT_MODE_TWIN;
-    function_[0] = FUNCTION_ENVELOPE;
-    function_[1] = FUNCTION_ENVELOPE;
-    settings_.snap_mode = false;
-  } else {
+  if (storage.exists()) {
+      settings_ = loadSettings();
     edit_mode_ = static_cast<EditMode>(settings_.edit_mode);
     function_[0] = static_cast<Function>(settings_.function[0]);
     function_[1] = static_cast<Function>(settings_.function[1]);
@@ -96,6 +145,12 @@ void Ui::Init(CalibrationData* calibration_data) {
             static_cast<uint16_t>(pot_value_[i + 4]) << 8);
       }
     }
+  }
+  else {
+    edit_mode_ = EDIT_MODE_TWIN;
+    function_[0] = FUNCTION_ENVELOPE;
+    function_[1] = FUNCTION_ENVELOPE;
+    settings_.snap_mode = false;
   }
   
   if (switches_.pressed_immediate(SWITCH_TWIN_MODE)) {
@@ -122,7 +177,7 @@ void Ui::SaveState() {
   settings_.function[0] = function_[0];
   settings_.function[1] = function_[1];
   copy(&pot_value_[0], &pot_value_[8], &settings_.pot_value[0]);
-  storage.ParsimoniousSave(settings_, &version_token_);
+  saveSettings(settings_);
 }
 
 inline void Ui::RefreshLeds() {

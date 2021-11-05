@@ -28,23 +28,31 @@
 
 #include "calibration_data.h"
 
-#include "stmlib/system/storage.h"
+#include "util/storage/csv.h"
 
 namespace peaks {
 
 using namespace stmlib;
 
-Storage<0x801c000, 1> calibration_storage;
+Csv calibration_storage;
 
 void CalibrationData::Init() {
-  if (!calibration_storage.Load(&calibration_settings_)) {
-    calibration_settings_.dac_offset[0] = 0;
-    calibration_settings_.dac_offset[1] = 0;
-  }
+    if (calibration_storage.exists()) {
+        const auto settingsData = calibration_storage.load();
+        calibration_settings_.dac_offset[0] = std::stoi(settingsData[0][0]);
+        calibration_settings_.dac_offset[1] = std::stoi(settingsData[0][1]);
+    }
+    else {
+        calibration_settings_.dac_offset[0] = 0;
+        calibration_settings_.dac_offset[1] = 0;
+    }
 }
 
 void CalibrationData::Save() {
-  calibration_storage.Save(calibration_settings_);
+    Csv::Data data(1);
+    data[0].push_back(std::to_string(calibration_settings_.dac_offset[0]));
+    data[0].push_back(std::to_string(calibration_settings_.dac_offset[1]));
+    calibration_storage.save(data);
 }
 
 }  // namespace peaks

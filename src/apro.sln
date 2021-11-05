@@ -9,12 +9,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "peaks", "lib\peaks\peaks.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stmlib", "lib\stmlib\stmlib.vcxitems", "{84B105FF-056F-4136-A372-86F5F6320F3F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "util", "lib\util\util.vcxitems", "{05BD8FE6-5D1B-4D8D-BD49-0E9885D25E2B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		lib\peaks\peaks.vcxitems*{2ea70b8b-dca9-49d1-857e-4fea0842b3e8}*SharedItemsImports = 9
 		lib\stmlib\stmlib.vcxitems*{84b105ff-056f-4136-a372-86f5f6320f3f}*SharedItemsImports = 9
 		lib\peaks\peaks.vcxitems*{9b78b4c9-492d-4e44-9565-d1eee9663105}*SharedItemsImports = 4
 		lib\stmlib\stmlib.vcxitems*{9b78b4c9-492d-4e44-9565-d1eee9663105}*SharedItemsImports = 4
+		lib\util\util.vcxitems*{9b78b4c9-492d-4e44-9565-d1eee9663105}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

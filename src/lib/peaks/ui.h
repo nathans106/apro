@@ -40,6 +40,8 @@
 
 #include "peaks/processors.h"
 
+#include <array>
+
 namespace peaks {
 
 enum SwitchIndex {
@@ -72,8 +74,8 @@ enum Function {
 
 struct Settings {
   uint8_t edit_mode;
-  uint8_t function[2];
-  uint8_t pot_value[8];
+  std::array<uint8_t, 2> function;
+  std::array<uint8_t, 8> pot_value;
   bool snap_mode;
 };
 
