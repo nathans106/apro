@@ -1,4 +1,4 @@
-#include "peaks/peaks.cc"
+#include "peaks/peaks.h"
 
 #include <iostream>
 

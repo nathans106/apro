@@ -22,6 +22,8 @@
 // 
 // See http://creativecommons.org/licenses/MIT/ for more information.
 
+#include "peaks.h"
+
 #include <stm32f10x_conf.h>
 
 #include "stmlib/utils/dsp.h"
@@ -151,7 +153,7 @@ void Init() {
 }
 
 namespace peaks {
-int main() {
+void main() {
     Init();
 
     while (1) {
@@ -159,8 +161,4 @@ int main() {
         io_buffer.Process(&Process);
     }
 }
-}
-
-int main(void) {
-    return peaks::main();
 }

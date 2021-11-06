@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{2ea70b8b-dca9-49d1-857e-4fea0842b3e8}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)bootloader\bootloader.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)calibration_data.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\adc.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\dac.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\gate_input.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\leds.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\switches.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\system.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drums\bass_drum.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drums\fm_drum.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drums\high_hat.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)drums\snare_drum.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)modulations\lfo.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)modulations\multistage_envelope.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)number_station\number_station.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)processors.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pulse_processor\pulse_randomizer.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pulse_processor\pulse_shaper.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)resources.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)test\peaks_test.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ui.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)data\digits.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)calibration_data.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\adc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\dac.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\debug_pin.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\gate_input.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\leds.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\switches.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\system.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\bass_drum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\excitation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\fm_drum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\high_hat.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\snare_drum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)drums\svf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)gate_processor.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)io_buffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)modulations\bouncing_ball.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)modulations\lfo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)modulations\mini_sequencer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)modulations\multistage_envelope.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)number_station\number_station.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)processors.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pulse_processor\pulse_randomizer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pulse_processor\pulse_shaper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)resources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ui.h" />
+  </ItemGroup>
+</Project>
