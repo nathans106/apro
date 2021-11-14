@@ -29,6 +29,8 @@
 #ifndef STMLIB_UTILS_DSP_DSP_H_
 #define STMLIB_UTILS_DSP_DSP_H_
 
+#define TEST
+
 #include "stmlib/stmlib.h"
 
 #include <cmath>
