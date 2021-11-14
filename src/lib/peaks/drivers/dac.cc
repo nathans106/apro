@@ -26,7 +26,7 @@
 //
 // Driver for DAC.
 
-#include "peaks/drivers/dac.h"
+#include "drivers/dac.h"
 
 namespace peaks {
   

@@ -26,7 +26,7 @@
 //
 // Driver for ADC.
 
-#include "peaks/drivers/adc.h"
+#include "drivers/adc.h"
 
 #include <stm32f10x_conf.h>
 

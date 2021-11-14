@@ -30,15 +30,15 @@
 #include "stmlib/utils/ring_buffer.h"
 #include "stmlib/system/system_clock.h"
 
-#include "peaks/drivers/dac.h"
-#include "peaks/drivers/debug_pin.h"
-#include "peaks/drivers/gate_input.h"
-#include "peaks/drivers/system.h"
+#include "drivers/dac.h"
+#include "drivers/debug_pin.h"
+#include "drivers/gate_input.h"
+#include "drivers/system.h"
 
-#include "peaks/calibration_data.h"
-#include "peaks/io_buffer.h"
-#include "peaks/processors.h"
-#include "peaks/ui.h"
+#include "calibration_data.h"
+#include "io_buffer.h"
+#include "processors.h"
+#include "ui.h"
 
 using namespace peaks;
 using namespace std;

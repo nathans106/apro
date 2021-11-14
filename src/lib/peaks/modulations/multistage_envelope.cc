@@ -26,11 +26,11 @@
 //
 // Multistage envelope.
 
-#include "peaks/modulations/multistage_envelope.h"
+#include "modulations/multistage_envelope.h"
 
 #include "stmlib/utils/dsp.h"
 
-#include "peaks/resources.h"
+#include "resources.h"
 
 namespace peaks {
 

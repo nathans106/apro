@@ -26,7 +26,7 @@
 //
 // Driver for the status LEDs.
 
-#include "peaks/drivers/leds.h"
+#include "drivers/leds.h"
 
 #include <stm32f10x_conf.h>
 

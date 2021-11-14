@@ -26,7 +26,7 @@
 //
 // System level initialization.
 
-#include "peaks/drivers/system.h"
+#include "drivers/system.h"
 
 #include <stm32f10x_conf.h>
 

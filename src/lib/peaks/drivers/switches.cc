@@ -26,7 +26,7 @@
 //
 // Driver for the split and function switches.
 
-#include "peaks/drivers/switches.h"
+#include "drivers/switches.h"
 
 #include <string.h>
 

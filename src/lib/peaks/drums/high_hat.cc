@@ -26,14 +26,14 @@
 //
 // 808-style HH.
 
-#include "peaks/drums/high_hat.h"
+#include "drums/high_hat.h"
 
 #include <cstdio>
 
 #include "stmlib/utils/dsp.h"
 #include "stmlib/utils/random.h"
 
-#include "peaks/resources.h"
+#include "resources.h"
 
 namespace peaks {
 

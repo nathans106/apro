@@ -26,7 +26,7 @@
 //
 // LFO.
 
-#include "peaks/processors.h"
+#include "processors.h"
 
 #include <algorithm>
 

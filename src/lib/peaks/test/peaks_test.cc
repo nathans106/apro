@@ -18,7 +18,7 @@
 #include <cstring>
 #include <cstdlib>
 
-#include "peaks/processors.h"
+#include "processors.h"
 
 #include "stmlib/test/wav_writer.h"
 

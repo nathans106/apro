@@ -30,7 +30,7 @@
 // make resources
 
 
-#include "peaks/resources.h"
+#include "resources.h"
 
 namespace peaks {
 

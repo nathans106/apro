@@ -26,13 +26,13 @@
 //
 // 808-style bass drum.
 
-#include "peaks/drums/bass_drum.h"
+#include "drums/bass_drum.h"
 
 #include <cstdio>
 
 #include "stmlib/utils/dsp.h"
 
-#include "peaks/resources.h"
+#include "resources.h"
 
 namespace peaks {
 

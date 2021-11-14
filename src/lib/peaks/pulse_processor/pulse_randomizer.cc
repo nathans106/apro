@@ -26,14 +26,14 @@
 //
 // Create random repetitions of a pulse.
 
-#include "peaks/pulse_processor/pulse_randomizer.h"
+#include "pulse_processor/pulse_randomizer.h"
 
 #include <algorithm>
 
 #include "stmlib/utils/dsp.h"
 #include "stmlib/utils/random.h"
 
-#include "peaks/resources.h"
+#include "resources.h"
 
 namespace peaks {
 

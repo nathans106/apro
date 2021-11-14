@@ -26,13 +26,13 @@
 //
 // User interface.
 
-#include "peaks/ui.h"
+#include "ui.h"
 
 #include "stmlib/system/storage.h"
 
 #include <algorithm>
 
-#include "peaks/calibration_data.h"
+#include "calibration_data.h"
 
 namespace peaks {
 

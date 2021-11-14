@@ -26,7 +26,7 @@
 //
 // Calibration settings.
 
-#include "peaks/calibration_data.h"
+#include "calibration_data.h"
 
 #include "stmlib/system/storage.h"
 
