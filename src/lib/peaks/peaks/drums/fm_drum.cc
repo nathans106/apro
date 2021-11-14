@@ -26,12 +26,12 @@
 //
 // Sine FM drum - similar to the BD/SD in Anushri.
 
-#include "drums/fm_drum.h"
+#include "peaks/drums/fm_drum.h"
 #include <cstdio>
 #include "stmlib/utils/dsp.h"
 #include "stmlib/utils/random.h"
 
-#include "resources.h"
+#include "peaks/resources.h"
 
 namespace peaks {
 

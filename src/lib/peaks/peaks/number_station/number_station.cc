@@ -26,12 +26,12 @@
 //
 // Number station.
 
-#include "number_station/number_station.h"
+#include "number_station.h"
 
 #include "stmlib/utils/dsp.h"
 #include "stmlib/utils/random.h"
 
-#include "resources.h"
+#include "peaks/resources.h"
 
 namespace peaks {
 

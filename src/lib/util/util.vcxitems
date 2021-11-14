@@ -14,9 +14,9 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)storage\csv.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)util\storage\csv.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)storage\csv.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)util\storage\csv.h" />
   </ItemGroup>
 </Project>

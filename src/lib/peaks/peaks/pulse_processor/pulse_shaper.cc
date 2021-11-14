@@ -26,13 +26,13 @@
 //
 // Trigger to gate converter with pre-delay, duration, and repetitions.
 
-#include "pulse_processor/pulse_shaper.h"
+#include "pulse_shaper.h"
 
 #include <algorithm>
 
 #include "stmlib/utils/dsp.h"
 
-#include "resources.h"
+#include "peaks/resources.h"
 
 namespace peaks {
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "peaks_console", "app\peaks_console\peaks_console.vcxproj", "{9B78B4C9-492D-4E44-9565-D1EEE9663105}"
 EndProject
@@ -13,6 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "util", "lib\util\util.vcxit
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		lib\util\util.vcxitems*{05bd8fe6-5d1b-4d8d-bd49-0e9885d25e2b}*SharedItemsImports = 9
 		lib\peaks\peaks.vcxitems*{2ea70b8b-dca9-49d1-857e-4fea0842b3e8}*SharedItemsImports = 9
 		lib\stmlib\stmlib.vcxitems*{84b105ff-056f-4136-a372-86f5f6320f3f}*SharedItemsImports = 9
 		lib\peaks\peaks.vcxitems*{9b78b4c9-492d-4e44-9565-d1eee9663105}*SharedItemsImports = 4
