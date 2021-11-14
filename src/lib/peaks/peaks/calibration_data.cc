@@ -34,7 +34,7 @@ namespace peaks {
 
 using namespace stmlib;
 
-Csv calibration_storage;
+util::Csv calibration_storage("calibration_storage");
 
 void CalibrationData::Init() {
     if (calibration_storage.exists()) {
@@ -49,7 +49,7 @@ void CalibrationData::Init() {
 }
 
 void CalibrationData::Save() {
-    Csv::Data data(1);
+    util::Csv::Data data(1);
     data[0].push_back(std::to_string(calibration_settings_.dac_offset[0]));
     data[0].push_back(std::to_string(calibration_settings_.dac_offset[1]));
     calibration_storage.save(data);

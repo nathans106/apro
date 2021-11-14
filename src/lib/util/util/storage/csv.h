@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace stmlib {
+namespace util {
 class Csv {
 public:
     using Data = std::vector<std::vector<std::string>>;

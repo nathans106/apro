@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-namespace stmlib {
+namespace util {
 namespace {
 std::filesystem::path makeFile(const std::string& name, const std::filesystem::path& dir) {
     if (dir.empty()) {
