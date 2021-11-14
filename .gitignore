@@ -1,4 +1,7 @@
 /.vs/
 /src/.vs/
+/src/app/peaks_console/x64/
+/src/app/peaks_console/x86/
 
 *.user
+
