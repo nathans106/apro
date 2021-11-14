@@ -47,10 +47,10 @@ void BassDrum::Init() {
   pulse_up_.set_delay(0);
   pulse_up_.set_decay(3340);
 
-  pulse_down_.set_delay(1.0e-3 * 48000);
-  pulse_down_.set_decay(3072);
+  pulse_down_.set_delay(static_cast<uint16_t>(1.0e-3 * 48000));
+  pulse_down_.set_decay(static_cast<uint16_t>(3072));
 
-  attack_fm_.set_delay(4.0e-3 * 48000);
+  attack_fm_.set_delay(static_cast<uint16_t>(4.0e-3 * 48000));
   attack_fm_.set_decay(4093);
   
   resonator_.set_punch(32768);
@@ -67,8 +67,8 @@ void BassDrum::Process(const GateFlags* gate_flags, int16_t* out, size_t size) {
   while (size--) {
     GateFlags gate_flag = *gate_flags++;
     if (gate_flag & GATE_FLAG_RISING) {
-      pulse_up_.Trigger(12 * 32768 * 0.7);
-      pulse_down_.Trigger(-19662 * 0.7);
+      pulse_up_.Trigger(static_cast<int32_t>(12 * 32768 * 0.7));
+      pulse_down_.Trigger(static_cast<int32_t>(-19662 * 0.7));
       attack_fm_.Trigger(18000);
     }
     

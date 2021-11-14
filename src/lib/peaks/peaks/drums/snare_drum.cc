@@ -45,11 +45,11 @@ void SnareDrum::Init() {
   excitation_1_up_.set_decay(1536);
   
   excitation_1_down_.Init();
-  excitation_1_down_.set_delay(1e-3 * 48000);
+  excitation_1_down_.set_delay(static_cast<uint16_t>(1e-3 * 48000));
   excitation_1_down_.set_decay(3072);
 
   excitation_2_.Init();
-  excitation_2_.set_delay(1e-3 * 48000);
+  excitation_2_.set_delay(static_cast<uint16_t>(1e-3 * 48000));
   excitation_2_.set_decay(1200);
   
   excitation_noise_.Init();

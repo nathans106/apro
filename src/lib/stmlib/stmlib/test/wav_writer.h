@@ -60,7 +60,7 @@ class WavWriter {
     uint16_t s;
   
     fwrite("RIFF", 4, 1, fp_);
-    l = 36 + duration_ * sample_rate_ * 2 * num_channels_;
+    l = static_cast<uint32_t>(36 + duration_ * sample_rate_ * 2 * num_channels_);
     fwrite(&l, 4, 1, fp_);
     fwrite("WAVE", 4, 1, fp_);
   
@@ -69,19 +69,19 @@ class WavWriter {
     fwrite(&l, 4, 1, fp_);
     s = 1;
     fwrite(&s, 2, 1, fp_);
-    s = num_channels_;
+    s = static_cast<uint16_t>(num_channels_);
     fwrite(&s, 2, 1, fp_);
-    l = sample_rate_;
+    l = static_cast<uint32_t>(sample_rate_);
     fwrite(&l, 4, 1, fp_);
-    l = static_cast<uint32_t>(sample_rate_) * 2 * num_channels_;
+    l = static_cast<uint32_t>(static_cast<uint32_t>(sample_rate_) * 2 * num_channels_);
     fwrite(&l, 4, 1, fp_);
-    s = 2 * num_channels_;
+    s = static_cast<uint16_t>(2 * num_channels_);
     fwrite(&s, 2, 1, fp_);
     s = 16;
     fwrite(&s, 2, 1, fp_);
   
     fwrite("data", 4, 1, fp_);
-    l = duration_ * sample_rate_ * 2 * num_channels_;
+    l = static_cast<uint32_t>(duration_ * sample_rate_ * 2 * num_channels_);
     fwrite(&l, 4, 1, fp_);
     return true;
   }
@@ -130,7 +130,7 @@ class WavWriter {
   bool done() { return remaining_frames_ == 0; }
   
   float triangle(size_t division = 8) {
-    uint16_t tri = (remaining_frames() / division);
+    uint16_t tri = static_cast<uint16_t>((remaining_frames() / division));
     tri = tri > 32767 ? 65535 - tri : tri;
     return tri / 32768.0f;
   }

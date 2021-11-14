@@ -93,7 +93,7 @@ void NumberStation::Process(
           digit_ = voice_ ? digit_ % 10 : digit_ & 3;
         }
         if (voice_) {
-          phase_ = voice_digits[digit_] << 16;
+          phase_ = static_cast<uint32_t>(voice_digits[digit_]) << static_cast<uint32_t>(16);
         }
       }
       if (gate_flag & GATE_FLAG_HIGH) {
