@@ -14,14 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)bootloader\bootloader.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)calibration_data.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\adc.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\dac.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\gate_input.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\leds.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\switches.cc" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)drivers\system.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)drums\bass_drum.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)drums\fm_drum.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)drums\high_hat.cc" />
@@ -42,13 +35,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)calibration_data.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\adc.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\dac.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\debug_pin.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\gate_input.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\leds.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\switches.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)drivers\system.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)drums\bass_drum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)drums\excitation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)drums\fm_drum.h" />
