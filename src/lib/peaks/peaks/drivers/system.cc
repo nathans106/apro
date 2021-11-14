@@ -26,7 +26,7 @@
 //
 // System level initialization.
 
-#include "drivers/system.h"
+#include "system.h"
 
 #include <stm32f10x_conf.h>
 

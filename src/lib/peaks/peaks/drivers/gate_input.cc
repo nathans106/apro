@@ -26,7 +26,7 @@
 //
 // Driver for the 2 gate inputs.
 
-#include "drivers/gate_input.h"
+#include "gate_input.h"
 
 namespace peaks {
 

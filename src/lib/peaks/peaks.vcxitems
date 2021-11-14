@@ -15,6 +15,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)peaks\calibration_data.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\adc.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\dac.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\gate_input.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\leds.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\switches.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drivers\system.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drums\bass_drum.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drums\fm_drum.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)peaks\drums\high_hat.cc" />
@@ -35,6 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)peaks\calibration_data.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\adc.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\dac.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\debug_pin.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\gate_input.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\leds.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\switches.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drivers\system.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drums\bass_drum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drums\excitation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)peaks\drums\fm_drum.h" />

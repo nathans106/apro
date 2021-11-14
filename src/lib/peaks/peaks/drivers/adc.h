@@ -24,48 +24,32 @@
 //
 // -----------------------------------------------------------------------------
 //
-// Driver for DAC.
+// Driver for ADC.
 
-#include "dac.h"
+#ifndef PEAKS_DRIVERS_ADC_H_
+#define PEAKS_DRIVERS_ADC_H_
+
+#include "stmlib/stmlib.h"
 
 namespace peaks {
-  
-void Dac::Init() {
-  // Initialize SS pin.
-  GPIO_InitTypeDef gpio_init;
-  gpio_init.GPIO_Pin = kPinSS;
-  gpio_init.GPIO_Speed = GPIO_Speed_2MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize MOSI and SCK pins.
-  gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_15;
-  gpio_init.GPIO_Speed = GPIO_Speed_10MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize SPI
-  SPI_InitTypeDef spi_init;
-  spi_init.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
-  spi_init.SPI_Mode = SPI_Mode_Master;
-  spi_init.SPI_DataSize = SPI_DataSize_16b;
-  spi_init.SPI_CPOL = SPI_CPOL_High;
-  spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-  spi_init.SPI_NSS = SPI_NSS_Soft;
-  spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
-  spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-  spi_init.SPI_CRCPolynomial = 7;
-  SPI_Init(SPI2, &spi_init);
-  SPI_Cmd(SPI2, ENABLE);
-  
-  wrote_both_channels_ = false;
-}
 
-void Dac::Write(uint16_t channel_1) {
-  GPIO_SetBits(GPIOB, kPinSS);
-  GPIO_ResetBits(GPIOB, kPinSS);
-  SPI_I2S_SendData(SPI2, 0x2400 | (channel_1 >> 8));
-  SPI_I2S_SendData(SPI2, channel_1 << 8);
-}
+const uint8_t kNumAdcChannels = 4;
+
+class Adc {
+ public:
+  Adc() { }
+  ~Adc() { }
+  
+  void Init();
+  
+  inline uint16_t value(uint8_t channel) const { return values_[channel]; }
+ 
+ private:
+  uint16_t values_[kNumAdcChannels];
+  
+  DISALLOW_COPY_AND_ASSIGN(Adc);
+};
 
 }  // namespace peaks
+
+#endif  // PEAKS_DRIVERS_ADC_H_

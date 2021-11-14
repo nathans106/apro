@@ -26,46 +26,69 @@
 //
 // Driver for DAC.
 
-#include "dac.h"
+#ifndef PEAKS_DRIVERS_DAC_H_
+#define PEAKS_DRIVERS_DAC_H_
+
+#include <stm32f10x_conf.h>
+
+#include "stmlib/stmlib.h"
 
 namespace peaks {
-  
-void Dac::Init() {
-  // Initialize SS pin.
-  GPIO_InitTypeDef gpio_init;
-  gpio_init.GPIO_Pin = kPinSS;
-  gpio_init.GPIO_Speed = GPIO_Speed_2MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize MOSI and SCK pins.
-  gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_15;
-  gpio_init.GPIO_Speed = GPIO_Speed_10MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize SPI
-  SPI_InitTypeDef spi_init;
-  spi_init.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
-  spi_init.SPI_Mode = SPI_Mode_Master;
-  spi_init.SPI_DataSize = SPI_DataSize_16b;
-  spi_init.SPI_CPOL = SPI_CPOL_High;
-  spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-  spi_init.SPI_NSS = SPI_NSS_Soft;
-  spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
-  spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-  spi_init.SPI_CRCPolynomial = 7;
-  SPI_Init(SPI2, &spi_init);
-  SPI_Cmd(SPI2, ENABLE);
-  
-  wrote_both_channels_ = false;
-}
 
-void Dac::Write(uint16_t channel_1) {
-  GPIO_SetBits(GPIOB, kPinSS);
-  GPIO_ResetBits(GPIOB, kPinSS);
-  SPI_I2S_SendData(SPI2, 0x2400 | (channel_1 >> 8));
-  SPI_I2S_SendData(SPI2, channel_1 << 8);
-}
+const uint16_t kPinSS = GPIO_Pin_12;
+
+class Dac {
+ public:
+  Dac() { }
+  ~Dac() { }
+
+  void Init();
+
+  inline void Write(int index, uint16_t value) {
+    data_[index] = value;
+  }
+
+  inline bool Update() {
+    GPIOB->BSRR = kPinSS;
+    GPIOB->BRR = kPinSS;
+    
+    if (wrote_both_channels_) {
+      SPI2->DR = 0x2400 | (data_[0] >> 8);
+      wrote_both_channels_ = false;
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      SPI2->DR = data_[0] << 8;
+    } else {
+      SPI2->DR = 0x1000 | (data_[1] >> 8);
+      wrote_both_channels_ = true;
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      __asm__("nop");
+      SPI2->DR = data_[1] << 8;
+    }
+    return wrote_both_channels_;
+  }
+  
+  void Write(uint16_t channel_1);
+
+ private:
+  uint16_t data_[2];
+  bool wrote_both_channels_;
+  
+  DISALLOW_COPY_AND_ASSIGN(Dac);
+};
 
 }  // namespace peaks
+
+#endif  // PEAKS_DRIVERS_DAC_H_

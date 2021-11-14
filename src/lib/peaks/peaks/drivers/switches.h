@@ -24,48 +24,57 @@
 //
 // -----------------------------------------------------------------------------
 //
-// Driver for DAC.
+// Driver for the split and function switches.
 
-#include "dac.h"
+#ifndef PEAKS_DRIVERS_SWITCHES_H_
+#define PEAKS_DRIVERS_SWITCHES_H_
+
+#include "stmlib/stmlib.h"
+
+#include <stm32f10x_conf.h>
 
 namespace peaks {
-  
-void Dac::Init() {
-  // Initialize SS pin.
-  GPIO_InitTypeDef gpio_init;
-  gpio_init.GPIO_Pin = kPinSS;
-  gpio_init.GPIO_Speed = GPIO_Speed_2MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_Out_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize MOSI and SCK pins.
-  gpio_init.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_15;
-  gpio_init.GPIO_Speed = GPIO_Speed_10MHz;
-  gpio_init.GPIO_Mode = GPIO_Mode_AF_PP;
-  GPIO_Init(GPIOB, &gpio_init);
-  
-  // Initialize SPI
-  SPI_InitTypeDef spi_init;
-  spi_init.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
-  spi_init.SPI_Mode = SPI_Mode_Master;
-  spi_init.SPI_DataSize = SPI_DataSize_16b;
-  spi_init.SPI_CPOL = SPI_CPOL_High;
-  spi_init.SPI_CPHA = SPI_CPHA_1Edge;
-  spi_init.SPI_NSS = SPI_NSS_Soft;
-  spi_init.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2;
-  spi_init.SPI_FirstBit = SPI_FirstBit_MSB;
-  spi_init.SPI_CRCPolynomial = 7;
-  SPI_Init(SPI2, &spi_init);
-  SPI_Cmd(SPI2, ENABLE);
-  
-  wrote_both_channels_ = false;
-}
 
-void Dac::Write(uint16_t channel_1) {
-  GPIO_SetBits(GPIOB, kPinSS);
-  GPIO_ResetBits(GPIOB, kPinSS);
-  SPI_I2S_SendData(SPI2, 0x2400 | (channel_1 >> 8));
-  SPI_I2S_SendData(SPI2, channel_1 << 8);
-}
+const uint8_t kNumSwitches = 4;
+
+class Switches {
+ public:
+  Switches() { }
+  ~Switches() { }
+  
+  void Init();
+  void Debounce();
+  
+  inline bool released(uint8_t index) const {
+    return switch_state_[index] == 0x7f;
+  }
+  
+  inline bool just_pressed(uint8_t index) const {
+    return switch_state_[index] == 0x80;
+  }
+
+  inline bool pressed(uint8_t index) const {
+    return switch_state_[index] == 0x00;
+  }
+  
+  inline bool pressed_immediate(uint8_t index) const {
+    if (index == 0) {
+      return !GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_13);
+    } else if (index == 2) {
+      return !GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_8);
+    } else if (index == 1) {
+      return !GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_14);
+    } else {
+      return false;
+    }
+  }
+
+ private:
+  uint8_t switch_state_[kNumSwitches];
+  
+  DISALLOW_COPY_AND_ASSIGN(Switches);
+};
 
 }  // namespace peaks
+
+#endif  // PEAKS_DRIVERS_SWITCHES_H_
